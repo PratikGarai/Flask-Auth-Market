@@ -1,8 +1,6 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
-from datas import items
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///market.db'
 db = SQLAlchemy(app=app)
@@ -24,7 +22,7 @@ def home_page():
 @app.route('/market')
 def market_page():
     context = {
-        "items" : items
+        "items" : Item.query.all()
     }
 
     return render_template("market.html", **context)
