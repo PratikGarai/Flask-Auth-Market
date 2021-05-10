@@ -1,0 +1,27 @@
+{% extends "template.html" %}
+{% block content %}
+    <div class="container">
+        <br><br>
+        <h1 class="h3 mb-3 font-weight-normal">
+            Create your Account
+        </h1>
+        <br>
+        <form method="POST" class="form-register" style="color: white;">
+            {{form.username.label()}}
+            {{form.username(class="form-control", placeholder="John Doe")}}
+
+            {{form.email.label()}}
+            {{form.email(class="form-control", placeholder="john@example.com")}}
+
+            {{form.password1.label()}}
+            {{form.password1(class="form-control")}}
+
+            {{form.password2.label()}}
+            {{form.password2(class="form-control")}}
+
+            <br>
+            {{form.submit(class="form-control btn btn-lg btn-block btn-primary")}}
+        </form>
+    </div>
+
+{% endblock %}
