@@ -3,6 +3,7 @@ from flask import render_template, redirect, url_for
 from market.models import Item, User
 from market.forms import RegisterForm
 from market import db
+from flask.helpers import flash, get_flashed_messages
 
 @app.route('/')
 @app.route('/home')
@@ -31,7 +32,9 @@ def register_page():
                             password_hash = form.password1.data)
         db.session.add(user_to_create)
         db.session.commit()
-        print("Here")
         return redirect(url_for('market_page'))
+    if form.errors != {} :
+        for err_msg in form.errors.values() :
+            flash('Error creating user : '+str(err_msg[0]) , category='danger')
 
     return render_template("register.html", **context)
