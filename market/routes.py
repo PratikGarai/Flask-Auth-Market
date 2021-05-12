@@ -4,7 +4,7 @@ from market.models import Item, User
 from market.forms import LoginForm, RegisterForm
 from market import db
 from flask.helpers import flash
-from flask_login import login_user
+from flask_login import login_user, logout_user
 
 @app.route('/')
 @app.route('/home')
@@ -51,7 +51,7 @@ def login_page():
     }
 
     if form.validate_on_submit():
-        attempt_user = User.query.get(username=form.username.data).first()
+        attempt_user = User.query.filter_by(username=form.username.data).first()
         if attempt_user and attempt_user.check_password(form.password.data):
             login_user(attempt_user)
             flash(f'Success! You are logged in as {attempt_user.username}', 'success')
@@ -65,6 +65,12 @@ def login_page():
         
     if form.errors != {} :
         for err_msg in form.errors.values() :
-            flash('Error creating user : '+str(err_msg[0]) , category='danger')
+            flash('Invalid credentials' , category='danger')
 
     return render_template("login.html", **context)
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home_page'))

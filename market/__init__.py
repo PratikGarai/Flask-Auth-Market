@@ -1,4 +1,3 @@
-from market.forms import LoginForm
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
