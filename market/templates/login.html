@@ -3,7 +3,7 @@
     <div class="container">
         <br><br>
         <h1 class="h3 mb-3 font-weight-normal">
-            Create your Account
+            Log In to your Account
         </h1>
         <br>
         <form method="POST" class="form-register" style="color: white;">
@@ -12,18 +12,12 @@
             {{form.username.label()}}
             {{form.username(class="form-control", placeholder="John Doe")}}
 
-            {{form.email.label()}}
-            {{form.email(class="form-control", placeholder="john@example.com")}}
-
-            {{form.password1.label()}}
-            {{form.password1(class="form-control")}}
-
-            {{form.password2.label()}}
-            {{form.password2(class="form-control")}}
+            {{form.password.label()}}
+            {{form.password(class="form-control")}}
 
             <div class="checkbox mb-3">
-                <span>ALready have an account?</span>
-                <a href="{{ url_for('login_page') }}"> Login Here</a>
+                <span>Do not have an account?</span>
+                <a href="{{ url_for('register_page') }}"> Register Here</a>
             </div>
             <br>
             {{form.submit(class="btn btn-primary btn-lg btn-block")}}
